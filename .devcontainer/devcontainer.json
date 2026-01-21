@@ -1,0 +1,24 @@
+{
+    "name": "Laravel Post-Ops",
+    "dockerComposeFile": "compose.yml",
+    "service": "app",
+    "workspaceFolder": "/workspaces/post-ops",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "bmewburn.vscode-intelephense-client",
+                "xdebug.php-debug",
+                "neilbrayfield.php-unittest",
+                "shufo.vscode-blade-formatter"
+            ]
+        }
+    },
+    "features": {
+        // On installe Node.js via Feature car c'est plus propre que dans le Dockerfile
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "20"
+        }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "sudo chown -R vscode:vscode . && composer install && npm install"
+}

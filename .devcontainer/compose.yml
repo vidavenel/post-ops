@@ -1,0 +1,26 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspaces/post-ops:cached
+      - node_modules_data:/workspaces/post-ops/node_modules # Volume isolé pour node_modules
+      - vendor_data:/workspaces/post-ops/vendor       # Volume isolé pour vendor
+    network_mode: service:db # L'app partage le réseau de la DB (accès via localhost)
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql-data:/var/lib/mysql # Persistance des données
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-data: # Déclaration du volume nommé
+  node_modules_data: # Volume pour node_modules
+  vendor_data: # Volume pour vendor
