@@ -11,10 +11,10 @@ export default function AlerteTable({ alertes }: AlerteTableProps) {
         <Table>
             <TableHeader>
                 <TableRow>
-                    <TableHead>Nom</TableHead>
-                    <TableHead>Description</TableHead>
-                    <TableHead>Date</TableHead>
-                    <TableHead>Status</TableHead>
+                    <TableHead>Numero Alerte</TableHead>
+                    <TableHead>Date Creation</TableHead>
+                    <TableHead>Commune</TableHead>
+                    <TableHead>Numero Affaire</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>

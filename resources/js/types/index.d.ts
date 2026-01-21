@@ -42,9 +42,8 @@ export interface User {
 }
 
 export interface Alerte {
-    id: number;
-    name: string;
-    description: string;
-    date: string;
-    status: string;
+    numero_alerte: string;
+    date_creation: Date;
+    commune: string;
+    numero_affaire: string;
 }

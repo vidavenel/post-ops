@@ -31,6 +31,20 @@ return [
 
     'connections' => [
 
+        'dwh_nexsis' => [
+            'driver' => 'pgsql',
+            'url' => env('DWH_NEXSIS_URL'),
+            'host' => env('DWH_NEXSIS_HOST', '127.0.0.1'),
+            'port' => env('DWH_NEXSIS_PORT', '5432'),
+            'database' => env('DWH_NEXSIS_DATABASE', 'laravel'),
+            'username' => env('DWH_NEXSIS_USERNAME', 'root'),
+            'password' => env('DWH_NEXSIS_PASSWORD', ''),
+            'charset' => env('DWH_NEXSIS_CHARSET', 'utf8'),
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'search_path' => 'public',
+        ],
+
         'sqlite' => [
             'driver' => 'sqlite',
             'url' => env('DB_URL'),

@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     libzip-dev \
     zip \
-    && docker-php-ext-install pdo pdo_mysql zip bcmath
+    && docker-php-ext-install pdo pdo_mysql pdo_pgsql zip bcmath
 
 # On vérifie si xdebug est déjà là, sinon on l'installe. 
 # On utilise "|| true" pour éviter que le build plante si déjà présent.

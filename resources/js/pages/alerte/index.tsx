@@ -3,6 +3,7 @@ import { Head } from '@inertiajs/react';
 import AppLayout from '@/layouts/app-layout';
 import { alerte } from '@/routes';
 import { type Alerte, type BreadcrumbItem } from '@/types';
+
 import AlerteTable from './_components/alerte-table';
 
 const breadcrumbs: BreadcrumbItem[] = [
@@ -12,31 +13,11 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-const alertes: Alerte[] = [
-    {
-        id: 1,
-        name: 'Alerte 1',
-        description: 'Description de l\'alerte 1',
-        date: '2021-01-01',
-        status: 'active',
-    },
-    {
-        id: 2,
-        name: 'Alerte 2',
-        description: 'Description de l\'alerte 2',
-        date: '2021-01-02',
-        status: 'inactive',
-    },
-    {
-        id: 3,
-        name: 'Alerte 3',
-        description: 'Description de l\'alerte 3',
-        date: '2021-01-03',
-        status: 'active',
-    }
-]
+interface AlerteProps {
+    alertes: Alerte[];
+}
 
-export default function Alerte() {  
+export default function Alerte({alertes}: AlerteProps) {  
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Alerte" />
