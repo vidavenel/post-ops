@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { Bell, BookOpen, CableCar, FileText, Folder, LayoutGrid } from 'lucide-react';
 
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
@@ -13,7 +13,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
+import { alerte, ascenseur, dashboard, operation } from '@/routes';
 import { type NavItem } from '@/types';
 
 import AppLogo from './app-logo';
@@ -23,6 +23,21 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Alertes',
+        href: alerte(),
+        icon: Bell,
+    },
+    {
+        title: 'Operations',
+        href: operation(),
+        icon: FileText,
+    },
+    {
+        title: 'Ascenseurs',
+        href: ascenseur(),
+        icon: CableCar,
     },
 ];
 

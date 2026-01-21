@@ -1,9 +1,9 @@
 import { Head } from '@inertiajs/react';
 
-import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { alerte } from '@/routes';
-import { type BreadcrumbItem } from '@/types';
+import { type Alerte, type BreadcrumbItem } from '@/types';
+import AlerteTable from './_components/alerte-table';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -12,24 +12,37 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+const alertes: Alerte[] = [
+    {
+        id: 1,
+        name: 'Alerte 1',
+        description: 'Description de l\'alerte 1',
+        date: '2021-01-01',
+        status: 'active',
+    },
+    {
+        id: 2,
+        name: 'Alerte 2',
+        description: 'Description de l\'alerte 2',
+        date: '2021-01-02',
+        status: 'inactive',
+    },
+    {
+        id: 3,
+        name: 'Alerte 3',
+        description: 'Description de l\'alerte 3',
+        date: '2021-01-03',
+        status: 'active',
+    }
+]
+
 export default function Alerte() {  
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Alerte" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
-                <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                </div>
                 <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                    <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
+                    <AlerteTable alertes={alertes} />
                 </div>
             </div>
         </AppLayout>
