@@ -2,28 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Services\NexsisService;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\DB;
 
 class AscenseurController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(NexsisService $nexsisService)
     {
-        $operations = DB::connection('dwh_nexsis')
-            ->table('nexsis_prod.sgo_operation', 'so')
-            ->select('so.id_operation', 'so.numero', 'so.date_creation', 'so.nature_de_fait_label')
-            ->where('so.nature_de_fait_code', '=', 'C02.16.04')
-            ->orWhere('so.nature_de_fait_code', 'like', 'C09.06.%')
-            ->take(20)
-            ->orderBy('date_creation', 'desc')
-            ->get();
+        $operations = $nexsisService->getOperations(true);
 
         return Inertia::render('ascenseur/index', [
-            'operations' => $operations->toArray(),
+            'operations' => $operations,
         ]);
     }
 

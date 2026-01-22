@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\NexsisService;
 use Inertia\Inertia;
 
 class CrssController extends Controller
@@ -11,24 +10,12 @@ class CrssController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(NexsisService $nexsisService)
     {
-        $crss = DB::connection('dwh_nexsis')
-            ->table('nexsis_prod.crss_operation', 'co')
-            ->select(
-                'co.id_operation', 
-                'co.numero_operation', 
-                'co.numero_affaire', 
-                'co.commune', 
-                'co.thematique_principale',
-                'co.date_debut_operation'
-                )
-            ->take(20)
-            ->orderBy('createdAt', 'desc')
-            ->get();
+        $crss = $nexsisService->getCrss();
 
         return Inertia::render('crss/index', [
-            'crss' => $crss->toArray(),
+            'crss' => $crss,
         ]);
     }
 }

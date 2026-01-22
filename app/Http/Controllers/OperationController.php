@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Services\NexsisService;
 use Inertia\Inertia;
 
 class OperationController extends Controller
@@ -11,17 +10,12 @@ class OperationController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke(NexsisService $nexsisService)
     {
-        $operations = DB::connection('dwh_nexsis')
-            ->table('nexsis_prod.sgo_operation', 'so')
-            ->select('so.id_operation', 'so.numero', 'so.date_creation', 'so.nature_de_fait_label')
-            ->take(20)
-            ->orderBy('date_creation', 'desc')
-            ->get();
+        $operations = $nexsisService->getOperations();
 
         return Inertia::render('operation/index', [
-            'operations' => $operations->toArray(),
+            'operations' => $operations,
         ]);
     }
 }

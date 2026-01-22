@@ -1,5 +1,4 @@
 import { TableCell, TableRow } from "@/components/ui/table";
-
 import { type Operation } from "@/types";
 
 export default function OperationRow(operation: Operation) {

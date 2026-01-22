@@ -9,6 +9,8 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\NexsisService;
+use App\Services\FakeNexsisService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +19,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton(NexsisService::class, function ($app) {
+            if (!env('DWH_NEXSIS_HOST')) {
+                return new FakeNexsisService();
+            }
+            return new NexsisService();
+        });
     }
 
     /**

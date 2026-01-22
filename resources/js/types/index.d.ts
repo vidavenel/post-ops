@@ -43,7 +43,7 @@ export interface User {
 
 export interface Alerte {
     numero_alerte: string;
-    date_creation: Date;
+    date_creation: string;
     commune: string;
     numero_affaire: string;
 }
@@ -51,7 +51,7 @@ export interface Alerte {
 export interface Operation {
     id_operation: string;
     numero: string;
-    date_creation: Date;
+    date_creation: string;
     nature_de_fait_label: string;
 }
 
@@ -61,5 +61,5 @@ export interface Crss {
     numero_affaire: string;
     commune: string;
     thematique_principale: string;
-    date_debut_operation: Date;
+    date_debut_operation: string;
 }

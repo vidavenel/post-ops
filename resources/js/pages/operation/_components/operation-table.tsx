@@ -1,8 +1,7 @@
 import { Table, TableHeader, TableRow, TableHead, TableBody } from "@/components/ui/table";
+import { type Operation } from "@/types";
 
 import OperationRow from "./operation-row";
-
-import { type Operation } from "@/types";
 
 interface OperationTableProps {
     operations: Operation[];
