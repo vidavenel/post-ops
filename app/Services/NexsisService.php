@@ -7,13 +7,16 @@ use Illuminate\Support\Collection;
 
 class NexsisService
 {
-    public function getAlertes(): Collection
+    public function getAlertes(?string $numero_affaire): Collection
     {
         $alertes = DB::connection('dwh_nexsis')
             ->table('nexsis_prod.sga_alerte', 'sa')
             ->select('sa.numero_alerte', 'sa.date_creation', 'stl.commune', 'sa.numero_affaire')
             // ->leftJoin('nexsis_prod.sga_traitement as st', 'st.numero_alerte', '=', 'sa.numero_alerte')
             ->leftJoin('nexsis_prod.sga_traitement_localisation as stl', 'stl.numero_alerte', '=', 'sa.numero_alerte')
+            ->when($numero_affaire, function ($query) use ($numero_affaire) {
+                return $query->where('sa.numero_affaire', '=', $numero_affaire);
+            })
             ->take(20)
             ->orderBy('date_creation', 'desc')
             ->get();
@@ -43,10 +46,25 @@ class NexsisService
         return $operations;
     }
 
-    public function getOperation(string $numero_operation): array
+    public function getOperation(string $id_operation): array
     {
         // TODO: Implement getOperation() method.
         return [];
+    }
+
+    public function getTraitementCrss(?string $numero_affaire): Collection
+    {
+        $traitement_crss = DB::connection('dwh_nexsis')
+            ->table('nexsis_prod.crss_operation', 'co')
+            ->select('co.id_operation', 'co.numero_operation', 'co.numero_affaire', 'co.commune', 'co.thematique_principale', 'co.date_debut_operation')
+            ->when($numero_affaire, function ($query) use ($numero_affaire) {
+                return $query->where('co.numero_affaire', '=', $numero_affaire);
+            })
+            ->take(20)
+            ->orderBy('date_debut_operation', 'desc')
+            ->get();
+
+        return $traitement_crss;
     }
 
     public function getCrss(): Collection

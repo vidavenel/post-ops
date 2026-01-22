@@ -10,12 +10,23 @@ class OperationController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(NexsisService $nexsisService)
+    public function index(NexsisService $nexsisService)
     {
         $operations = $nexsisService->getOperations();
 
         return Inertia::render('operation/index', [
             'operations' => $operations,
         ]);
+    }
+
+    public function show(NexsisService $nexsisService, $id_operation)
+    {
+        $operation = $nexsisService->getOperation($id_operation);
+
+        $alertes = $nexsisService->getAlertes($operation['numero_affaire'] ?? null);
+
+        $traitement_crss = $nexsisService->getTraitementCrss($operation['numero_affaire'] ?? null);
+
+        return Inertia::render('operation/show', compact('operation', 'alertes', 'traitement_crss'));
     }
 }

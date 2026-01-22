@@ -6,8 +6,18 @@ use Illuminate\Support\Collection;
 
 class FakeNexsisService extends NexsisService
 {
-    public function getAlertes(): Collection
+    public function getAlertes(?string $numero_affaire): Collection
     {
+        if ($numero_affaire) {
+            return collect([
+                [
+                    'numero_alerte' => 'ALERTE-1234567890',
+                    'date_creation' => '2026-01-01',
+                    'commune' => 'Paris',
+                    'numero_affaire' => $numero_affaire,
+                ],
+            ]);
+        }
         return collect([
             [
                 'numero_alerte' => '1234567890',
@@ -62,7 +72,7 @@ class FakeNexsisService extends NexsisService
         ]);
     }
 
-    public function getOperation(string $numero_operation): array
+    public function getOperation(string $id_operation): array
     {
         return [
             'id_operation' => '1234567890',
@@ -72,6 +82,20 @@ class FakeNexsisService extends NexsisService
         ];
     }
 
+    public function getTraitementCrss(?string $numero_affaire): Collection
+    {
+        return collect([
+            [
+                'id_operation' => '1234567890',
+                'numero_operation' => '1234567890',
+                'numero_affaire' => '1234567890',
+                'commune' => 'Paris',
+                'thematique_principale' => 'Paris',
+                'date_debut_operation' => '2026-01-01',
+            ],
+        ]);
+    }
+    
     public function getCrss(): Collection
     {
         return collect([

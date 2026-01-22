@@ -22,7 +22,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('ascenseur', AscenseurController::class)->name('ascenseur');
 
     Route::get('alerte', AlerteController::class)->name('alerte');
-    Route::get('operation', OperationController::class)->name('operation');
+
+    Route::get('operation', [OperationController::class, 'index'])->name('operation');
+    Route::get('operation/{id_operation}', [OperationController::class, 'show'])->name('operation_show');
+
     Route::get('crss', CrssController::class)->name('crss');
 });
 
