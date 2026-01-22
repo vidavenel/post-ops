@@ -1,6 +1,8 @@
 import { Table, TableHeader, TableRow, TableHead, TableBody } from "@/components/ui/table";
-import { type Alerte } from "@/types";
+
 import AlerteRow from "./alerte-row";
+
+import { type Alerte } from "@/types";
 
 interface AlerteTableProps {
     alertes: Alerte[];

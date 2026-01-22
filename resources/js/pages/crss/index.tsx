@@ -1,30 +1,30 @@
 import { Head } from '@inertiajs/react';
 
 import AppLayout from '@/layouts/app-layout';
-import { operation } from '@/routes';
+import { crss } from '@/routes';
 
-import OperationTable from './_components/operation-table';
+import CrssTable from './_components/crss-table';
 
-import { type Operation, type BreadcrumbItem } from '@/types';
+import { type Crss, type BreadcrumbItem } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Operations',
-        href: operation().url,
+        title: 'CRSS',
+        href: crss().url,
     },
 ];
 
-interface OperationProps {
-    operations: Operation[];
+interface CrssProps {
+    crss: Crss[];
 }
 
-export default function Operation({operations}: OperationProps) {  
+export default function Crss({crss}: CrssProps) {  
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
-            <Head title="Operations" />
+            <Head title="CRSS" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                    <OperationTable operations={operations} />
+                    <CrssTable crss={crss} />
                 </div>
             </div>
         </AppLayout>

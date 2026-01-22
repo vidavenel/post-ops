@@ -2,9 +2,10 @@ import { Head } from '@inertiajs/react';
 
 import AppLayout from '@/layouts/app-layout';
 import { alerte } from '@/routes';
-import { type Alerte, type BreadcrumbItem } from '@/types';
 
 import AlerteTable from './_components/alerte-table';
+
+import { type Alerte, type BreadcrumbItem } from '@/types';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {

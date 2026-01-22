@@ -15,11 +15,13 @@ class OperationController extends Controller
     {
         $operations = DB::connection('dwh_nexsis')
             ->table('nexsis_prod.sgo_operation', 'so')
-            ->select('so.numero', 'so.date_creation', 'so.nature_de_fait_label')
+            ->select('so.id_operation', 'so.numero', 'so.date_creation', 'so.nature_de_fait_label')
             ->take(20)
             ->orderBy('date_creation', 'desc')
             ->get();
-        dd($operations);
-        return Inertia::render('operation/index');
+
+        return Inertia::render('operation/index', [
+            'operations' => $operations->toArray(),
+        ]);
     }
 }

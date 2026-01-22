@@ -3,6 +3,7 @@
 use App\Http\Controllers\AscenseurController;
 use App\Http\Controllers\AlerteController;
 use App\Http\Controllers\OperationController;
+use App\Http\Controllers\CrssController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('alerte', AlerteController::class)->name('alerte');
     Route::get('operation', OperationController::class)->name('operation');
+    Route::get('crss', CrssController::class)->name('crss');
 });
 
 require __DIR__.'/settings.php';

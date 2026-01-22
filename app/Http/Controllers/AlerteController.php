@@ -18,6 +18,7 @@ class AlerteController extends Controller
             ->take(20)
             ->orderBy('date_creation', 'desc')
             ->get();
+            
         return Inertia::render('alerte/index', [
             'alertes' => $alertes->toArray(),
         ]);

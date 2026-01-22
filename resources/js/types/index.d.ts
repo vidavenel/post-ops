@@ -47,3 +47,19 @@ export interface Alerte {
     commune: string;
     numero_affaire: string;
 }
+
+export interface Operation {
+    id_operation: string;
+    numero: string;
+    date_creation: Date;
+    nature_de_fait_label: string;
+}
+
+export interface Crss {
+    id_operation: string;
+    numero_operation: string;
+    numero_affaire: string;
+    commune: string;
+    thematique_principale: string;
+    date_debut_operation: Date;
+}

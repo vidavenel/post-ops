@@ -1,4 +1,5 @@
 import { TableCell, TableRow } from "@/components/ui/table";
+
 import { type Alerte } from "@/types";
 
 export default function AlerteRow(alerte: Alerte) {
